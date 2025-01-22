@@ -10,7 +10,7 @@ import Observation
 import UIKit
 import UIKitNavigation
 
-@Observable
+@Perceptible
 @MainActor
 class WiFiSettingsModel {
     @CasePathable
@@ -118,7 +118,17 @@ class WiFiSettingsViewController: UICollectionViewController {
                 rootViewController: ConnectToNetworkViewController(model: model)
             )
         }
-
+        
+        navigationDestination(
+          item: $model.destination.detail
+        ) { model in
+            NetworkDetailsViewController(model: model)
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard case let .foundNetwork(network) = dataSource.itemIdentifier(for: indexPath) else { return }
+        model.networkTapped(network)
     }
     
     private func configure(

@@ -11,7 +11,7 @@ import UIKit
 import UIKitNavigation
 
 @MainActor
-@Observable
+@Perceptible
 class NetworkDetailModel {
     var forgetAlertIsPresented = false
     let onConfirmForget: () -> Void

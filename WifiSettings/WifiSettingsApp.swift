@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import UIKitNavigation
 
 @main
 struct WifiSettingsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            UIViewControllerRepresenting {
+                UINavigationController(
+                    rootViewController:
+                        WiFiSettingsViewController(model: WiFiSettingsModel(foundNetworks: .mocks))
+                )
+            }
         }
     }
 }
